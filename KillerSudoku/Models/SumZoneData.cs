@@ -22,4 +22,9 @@ public class SumZoneData
     {
         return _sum;
     }
+
+    public HashSet<Vector2> GetPositions()
+    {
+        return _positions;
+    }
 }
