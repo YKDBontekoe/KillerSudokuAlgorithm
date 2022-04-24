@@ -2,6 +2,7 @@ namespace KillerSudoku;
 
 public static class SudokuSolver
 {
+    // --------- BASIC SUDOKU SOLVER --------- //
     public static bool SolveBasicSudoku(int[,] sudokuGrid, int yPos, int xPos)
     {
         // Check if the one before last row has been reached and the last position of the row
@@ -29,7 +30,7 @@ public static class SudokuSolver
         for (int num = 1; num < sudokuGrid.GetLength(0) + 1; num++) {
             
             // Check if the number is safe to place in the current position.
-            if (IsSafe(sudokuGrid, yPos, xPos, num)) {
+            if (IsBasicSudokuSafe(sudokuGrid, yPos, xPos, num)) {
                 sudokuGrid[yPos,xPos] = num;
                 
                 // Print current state of the sudoku grid.
@@ -49,7 +50,7 @@ public static class SudokuSolver
     // 1. Each row may only contain a number once
     // 2. Each column may only contain a number once
     // 3. Each 3x3 matrix may contain the number only once//
-    private static bool IsSafe(int[,] sudokuGrid, int yPos, int xPos,
+    private static bool IsBasicSudokuSafe(int[,] sudokuGrid, int yPos, int xPos,
         int num)
     {
         // Check if the same num is the same row
@@ -87,6 +88,8 @@ public static class SudokuSolver
 
         return true;
     }
+    
+    // --------- KILLER SUDOKU SOLVER --------- //
     
     public static void Print(int[,] grid)
     {
