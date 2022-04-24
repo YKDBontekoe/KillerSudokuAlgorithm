@@ -2,59 +2,69 @@ namespace KillerSudoku;
 
 public static class SudokuSolver
 {
-    public static bool SolveBasicSudoku(int[,] sudokuGrid, int xPos, int yPos)
+    public static bool SolveBasicSudoku(int[,] sudokuGrid, int yPos, int xPos)
     {
         // Check if the one before last row has been reached and the last position of the row
         // has been reached. If so, return true to avoid further backtracking.
-        if (xPos == sudokuGrid.GetLength(0) - 1 && yPos == sudokuGrid.GetLength(1))
+        if (xPos == sudokuGrid.GetLength(0) - 2 && yPos == sudokuGrid.GetLength(1) - 1)
         {
             return true;
         }
 
         // Move to next row when the end of the current row is reached.
-        if (yPos == sudokuGrid.GetLength(1))
+        if (xPos == sudokuGrid.GetLength(1) - 1)
         {
-            xPos++;
-            yPos = 0;
+            yPos++;
+            xPos = 0;
         }
 
         // Check if current value is not 0. If so, move to next position.
-        if (sudokuGrid[xPos, yPos] != 0)
+        if (sudokuGrid[yPos, xPos] != 0)
         {
-            return SolveBasicSudoku(sudokuGrid, xPos, yPos + 1);
+            return SolveBasicSudoku(sudokuGrid, yPos, xPos + 1);
         }
         
-        for (int num = 1; num < 9; num++) {
+        for (int num = 1; num < sudokuGrid.GetLength(0) + 1; num++) {
             
             // Check if the number is safe to place in the current position.
-            if (IsSafe(sudokuGrid, xPos, yPos, num)) {
-                sudokuGrid[xPos,yPos] = num;
+            if (IsSafe(sudokuGrid, yPos, xPos, num)) {
+                sudokuGrid[yPos,xPos] = num;
+                
+                // Print current state of the sudoku grid.
+                Console.WriteLine("Placing {0} in position ({1},{2})", num, yPos, xPos);
+                Print(sudokuGrid);
                 
                 // Check next position.
-                if (SolveBasicSudoku(sudokuGrid, xPos, yPos + 1))
+                if (SolveBasicSudoku(sudokuGrid, yPos, xPos + 1))
                     return true;
             }
-            sudokuGrid[xPos,yPos] = 0;
+            sudokuGrid[yPos,xPos] = 0;
         }
         return false;
     }
     
-    private static bool IsSafe(int[,] sudokuGrid, int xPos, int yPos,
+    // Sudoku Rules 
+    // 1. Each row may only contain a number once
+    // 2. Each column may only contain a number once
+    // 3. Each 3x3 matrix may contain the number only once//
+    private static bool IsSafe(int[,] sudokuGrid, int yPos, int xPos,
         int num)
     {
         // Check if the same num is the same row
         for (int x = 0; x <= sudokuGrid.GetLength(0) - 1; x++)
-            if (sudokuGrid[x,yPos] == num)
+        {
+            if (sudokuGrid[yPos, x] == num)
                 return false;
-        
+        }
+
         // Check if the same number is in the same column
         for (int y = 0; y <= sudokuGrid.GetLength(1) - 1; y++)
-            if (sudokuGrid[xPos,y] == num)
+            if (sudokuGrid[y,xPos] == num)
                 return false;
  
         // Check if the same num is in the 3*3 matrix
-        int startRow = xPos - xPos % 3, startCol
-            = yPos - yPos % 3;
+        int startRow = yPos - yPos % 3, startCol
+            = xPos - xPos % 3;
         for (int i = 0; i < 3; i++)
         for (int j = 0; j < 3; j++)
             if (sudokuGrid[i + startRow,j + startCol] == num)
@@ -65,7 +75,7 @@ public static class SudokuSolver
     
     public static void Print(int[,] grid)
     {
-        for (int i = 0; i < grid.GetLength(0) - 1; i++) {
+        for (int i = 0; i < grid.GetLength(0); i++) {
             for (int j = 0; j < grid.GetLength(1); j++)
                 Console.Write(grid[i,j] + " ");
             Console.WriteLine();
