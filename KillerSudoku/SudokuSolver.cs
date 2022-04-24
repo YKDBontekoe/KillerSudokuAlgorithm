@@ -21,9 +21,11 @@ public static class SudokuSolver
         // Check if current value is not 0. If so, move to next position.
         if (sudokuGrid[yPos, xPos] != 0)
         {
+            // Move to next x position.
             return SolveBasicSudoku(sudokuGrid, yPos, xPos + 1);
         }
         
+        // Iterate over the possible domain values (n = size of x dimension of grid (n*n)).
         for (int num = 1; num < sudokuGrid.GetLength(0) + 1; num++) {
             
             // Check if the number is safe to place in the current position.
@@ -59,17 +61,30 @@ public static class SudokuSolver
 
         // Check if the same number is in the same column
         for (int y = 0; y <= sudokuGrid.GetLength(1) - 1; y++)
-            if (sudokuGrid[y,xPos] == num)
+        {
+            if (sudokuGrid[y, xPos] == num)
+            {
                 return false;
- 
+            }
+        }
+
+        // Get the size of a single matrix of the sudoku grid.
+        int matrixSize = (int)Math.Sqrt(sudokuGrid.GetLength(0));
+        
         // Check if the same num is in the 3*3 matrix
-        int startRow = yPos - yPos % 3, startCol
-            = xPos - xPos % 3;
-        for (int i = 0; i < 3; i++)
-        for (int j = 0; j < 3; j++)
-            if (sudokuGrid[i + startRow,j + startCol] == num)
-                return false;
- 
+        int startRow = yPos - yPos % matrixSize, startCol
+            = xPos - xPos % matrixSize;
+        for (int i = 0; i < matrixSize; i++)
+        {
+            for (int j = 0; j < matrixSize; j++)
+            {
+                if (sudokuGrid[i + startRow, j + startCol] == num)
+                {
+                    return false;
+                }
+            }
+        }
+
         return true;
     }
     
