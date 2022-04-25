@@ -1,7 +1,7 @@
 using System.Numerics;
 using KillerSudoku.Models;
 
-namespace KillerSudoku;
+namespace KillerSudoku.Sudoku;
 
 public static class GridGenerator
 {
@@ -48,7 +48,7 @@ public static class GridGenerator
             new(45, new HashSet<Vector2>{new(6,1), new(5,2), new(6,2), new(7,2), new(4,3), new(5,3), new(6,3), new(4,4), new(5,4)}),
             new(34, new HashSet<Vector2>{new(6,0), new(7,0), new(8,0), new(7,1), new(8,1), new(8,2)}),
             new(11, new HashSet<Vector2>{new(7,3), new(7,4)}),
-            new(11, new HashSet<Vector2>{new(8,3), new(8,4), new(8,6)}),
+            new(11, new HashSet<Vector2>{new(8,3), new(8,4), new(8,5)}),
             new(7, new HashSet<Vector2>{new(6,4), new(6,5)}),
             new(22, new HashSet<Vector2>{new(1,4), new(1,5), new(0,5), new(0,6)}),
             new(27, new HashSet<Vector2>{new(3,4), new(2,5), new(3,5), new(4,5), new(3,6)}),
