@@ -86,10 +86,9 @@ public static class KillerSudokuSolver
             if (currentSum > cage.GetSum()) return false;
 
             bool hasZero = cageValues.Any(s => s == 0);
-            
-            if (!hasZero) return true;
+            if (hasZero) return true;
             if (currentSum != cage.GetSum()) return false;
-            return cageValues.Count ==new HashSet<int>(cageValues).Count;
+            return cageValues.Count == new HashSet<int>(cageValues).Count;
         }
 
         return false;
