@@ -35,7 +35,7 @@ public static class GridGenerator
             {0, 0, 0, 0, 0, 0, 0, 0, 0},
             {0, 0, 0, 0, 0, 0, 0, 0, 0}
         };
-        var sumZones = new List<SumZoneData>
+        var sumZones = new List<CageData>
         {
             new(10, new HashSet<Vector2> { new(0, 0), new(0, 1), new(0, 2) }),
             new(13, new HashSet<Vector2> { new(1, 0), new(2, 0), new(1, 1) }),

@@ -5,29 +5,16 @@ namespace KillerSudoku.Models;
 
 public class KillerSudokuData
 {
-    public KillerSudokuData(List<SumZoneData> sumZones, int[,] grid)
+    public KillerSudokuData(List<CageData> sumZones, int[,] grid)
     {
         GetSumZones = sumZones;
         GetGrid = grid;
     }
     
-    public List<SumZoneData> GetSumZones { get; }
+    public List<CageData> GetSumZones { get; }
 
     public int[,] GetGrid { get; }
 
-    public Dictionary<Vector2, SumZoneData> GetSumZoneDictionary()
-    {
-        Dictionary<Vector2, SumZoneData> sumZoneDictionary = new Dictionary<Vector2, SumZoneData>();
-        foreach (SumZoneData sumZone in GetSumZones)
-        {
-            foreach (Vector2 position in sumZone.GetPositions())
-            {
-                sumZoneDictionary.Add(position, sumZone);
-            }
-        }
-        return sumZoneDictionary;
-    }
-    
     public string ToStringGrid()
     {
         var sb = new StringBuilder();

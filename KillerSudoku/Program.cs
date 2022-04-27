@@ -22,7 +22,6 @@ var killerSudoku = GridGenerator.GenerateKillerSudoGrid();
 Printer.Print(killerSudoku.GetGrid);
 
 KillerSudokuSolver.KillerSudoku = killerSudoku;
-KillerSudokuSolver.SumZones = killerSudoku.GetSumZoneDictionary();
 
 var killerWatch = System.Diagnostics.Stopwatch.StartNew();
 if (KillerSudokuSolver.SolveKillerSudoku( 0, 0))

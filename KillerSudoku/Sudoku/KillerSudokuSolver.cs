@@ -5,9 +5,8 @@ namespace KillerSudoku.Sudoku;
 
 public static class KillerSudokuSolver
 {
-    public static KillerSudokuData KillerSudoku = new(new List<SumZoneData>(), new[,]{{0,0}});
-    public static Dictionary<Vector2, SumZoneData> SumZones = new();
-    
+    public static KillerSudokuData KillerSudoku = new(new List<CageData>(), new[,]{{0,0}});
+
     public static bool SolveKillerSudoku(int yPos, int xPos)
     {
         // Move to next row when the end of the current row is reached.
@@ -73,21 +72,26 @@ public static class KillerSudokuSolver
     private static bool IsCageSafe(int yPos, int xPos,
         int num)
     {
-        if (SumZones.TryGetValue(new Vector2(xPos, yPos), out var sumZone))
+        List<int> cageValues = new List<int>();
+        foreach (var cage in KillerSudoku.GetSumZones)
         {
-            int sum = 0;
-            foreach (Vector2 position in sumZone.GetPositions())
+            if (!cage.IsInZone(new Vector2(xPos, yPos))) continue;
+            foreach (Vector2 position in cage.GetPositions())
             {
-                int posY = (int) position.Y;
-                int posX = (int) position.X;
-                
-                if (KillerSudoku.GetGrid[posY, posX] == num) return false;
-                sum += KillerSudoku.GetGrid[posY, posX];
+                if ((int)position.X == xPos && (int)position.Y == yPos) cageValues.Add(num);
+                else cageValues.Add(KillerSudoku.GetGrid[(int)position.Y, (int)position.X]);
             }
             
-            if (sum + num <= sumZone.GetSum()) return true;
+            int currentSum  = cageValues.Sum();
+            if (currentSum > cage.GetSum()) return false;
+
+            bool hasZero = cageValues.Any(s => s == 0);
+            
+            if (!hasZero) return true;
+            if (currentSum != cage.GetSum()) return false;
+            if(cageValues.Count != cageValues.Distinct().Count()) return false;
         }
-        
+
         return false;
     }
 }

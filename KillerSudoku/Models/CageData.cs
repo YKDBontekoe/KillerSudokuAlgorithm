@@ -2,12 +2,12 @@ using System.Numerics;
 
 namespace KillerSudoku.Models;
 
-public class SumZoneData
+public class CageData
 {
     private readonly int _sum;
     private readonly HashSet<Vector2> _positions;
     
-    public SumZoneData(int sum, HashSet<Vector2> positions)
+    public CageData(int sum, HashSet<Vector2> positions)
     {
         _sum = sum;
         _positions = positions;
