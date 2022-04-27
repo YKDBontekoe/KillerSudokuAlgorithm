@@ -28,6 +28,7 @@ public static class KillerSudokuSolver
             if (IsKillerSudokuSafe(yPos, xPos, num) && IsCageSafe(yPos, xPos, num)){
                 KillerSudoku.GetGrid[yPos,xPos] = num;
                 
+                //Printer.Print(KillerSudoku.GetGrid);
                 // Check next position.
                 if (SolveKillerSudoku(yPos, xPos + 1)) return true;
             }
@@ -86,10 +87,10 @@ public static class KillerSudokuSolver
             if (currentSum > cage.GetSum()) return false;
 
             bool hasZero = cageValues.Any(s => s == 0);
-            
-            if (!hasZero) return true;
+
+            if (hasZero) return true;
             if (currentSum != cage.GetSum()) return false;
-            if(cageValues.Count != cageValues.Distinct().Count()) return false;
+            return cageValues.Count == cageValues.Distinct().Count();
         }
 
         return false;
