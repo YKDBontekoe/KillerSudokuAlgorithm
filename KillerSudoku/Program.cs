@@ -18,7 +18,7 @@ basicWatch.Stop();
 Console.WriteLine("Time taken: {0}ms", basicWatch.ElapsedMilliseconds);
 
 // -------------------- KILLER SUDOKU --------------------
-var killerSudoku = GridGenerator.GenerateHardKillerSudoGrid();
+var killerSudoku = GridGenerator.GenerateMediumKillerSudokuGrid();
 KillerSudokuSolver.KillerSudoku = killerSudoku;
 
 var killerWatch = System.Diagnostics.Stopwatch.StartNew();

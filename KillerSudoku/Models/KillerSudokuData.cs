@@ -5,13 +5,13 @@ namespace KillerSudoku.Models;
 
 public class KillerSudokuData
 {
-    public KillerSudokuData(List<CageData> sumZones, int[,] grid)
+    public KillerSudokuData(List<CageData> cages, int[,] grid)
     {
-        GetSumZones = sumZones;
+        GetCages = cages;
         GetGrid = grid;
     }
     
-    public List<CageData> GetSumZones { get; }
+    public List<CageData> GetCages { get; }
 
     public int[,] GetGrid { get; }
 

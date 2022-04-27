@@ -13,7 +13,7 @@ public class CageData
         _positions = positions;
     }
     
-    public bool IsInZone(Vector2 position)
+    public bool IsInCage(Vector2 position)
     {
         return _positions.Contains(position);
     }

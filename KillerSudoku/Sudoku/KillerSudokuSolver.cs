@@ -73,9 +73,9 @@ public static class KillerSudokuSolver
         int num)
     {
         List<int> cageValues = new List<int>();
-        foreach (var cage in KillerSudoku.GetSumZones)
+        foreach (var cage in KillerSudoku.GetCages)
         {
-            if (!cage.IsInZone(new Vector2(xPos, yPos))) continue;
+            if (!cage.IsInCage(new Vector2(xPos, yPos))) continue;
             foreach (Vector2 position in cage.GetPositions())
             {
                 if ((int)position.X == xPos && (int)position.Y == yPos) cageValues.Add(num);
