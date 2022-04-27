@@ -18,7 +18,7 @@ using KillerSudoku.Sudoku;
 // Console.WriteLine("Time taken: {0}ms", basicWatch.ElapsedMilliseconds);
 
 // -------------------- KILLER SUDOKU --------------------
-var killerSudoku = GridGenerator.GenerateKillerSudoGrid();
+var killerSudoku = GridGenerator.GenerateHardKillerSudoGrid();
 Printer.Print(killerSudoku.GetGrid);
 
 KillerSudokuSolver.KillerSudoku = killerSudoku;

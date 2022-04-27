@@ -21,7 +21,7 @@ public static class GridGenerator
         };
     }
     
-    public static KillerSudokuData GenerateKillerSudoGrid()
+    public static KillerSudokuData GenerateHardKillerSudoGrid()
     {
         var grid = new[,]
         {
@@ -63,4 +63,24 @@ public static class GridGenerator
 
         return new KillerSudokuData(sumZones, grid);
     }
+    
+    public KillerSudokuData GenerateEasyKillerSudokuGrid()
+    {
+        var grid = new[,]
+        {
+            {0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0}
+        };
+        var sumZones = new List<CageData>
+        {
+            }
+
+        return new KillerSudokuData(sumZones, grid);
 }
