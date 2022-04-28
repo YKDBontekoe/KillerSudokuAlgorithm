@@ -1,5 +1,6 @@
 ﻿using KillerSudoku;
 using KillerSudoku.Sudoku;
+using KillerSudoku.Sudoku.Strategies;
 
 var grid = GridGenerator.GenerateBasicSudokuGrid();
 
@@ -18,11 +19,11 @@ basicWatch.Stop();
 Console.WriteLine("Time taken: {0}ms", basicWatch.ElapsedMilliseconds);
 
 // -------------------- KILLER SUDOKU --------------------
-var killerSudoku = GridGenerator.GenerateMediumKillerSudokuGrid();
+var killerSudoku = GridGenerator.GenerateHardKillerSudoGrid();
 KillerSudokuSolver.KillerSudoku = killerSudoku;
 
 var killerWatch = System.Diagnostics.Stopwatch.StartNew();
-if (KillerSudokuSolver.SolveKillerSudoku( 0, 0))
+if (RuleOneKillerSudoku.SolveKillerSudoku( 0, 0, killerSudoku.GetSingleCagePositions()))
 {
     Console.WriteLine("Killer Sudoku Solution: ");
     Printer.Print(killerSudoku.GetGrid);

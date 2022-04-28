@@ -44,7 +44,7 @@ public static class KillerSudokuSolver
     // 3. Each 3x3 matrix may contain the number only once
     // 4. Each zone must be summed up to the maximum value of the zone.
     // 5. Each zone may only contain a number once.
-    private static bool IsKillerSudokuSafe(int yPos, int xPos,
+    public static bool IsKillerSudokuSafe(int yPos, int xPos,
         int num)
     {
         // Check if the same num is the same row
@@ -69,7 +69,7 @@ public static class KillerSudokuSolver
         return true;
     }
 
-    private static bool IsCageSafe(int yPos, int xPos,
+    public static bool IsCageSafe(int yPos, int xPos,
         int num)
     {
         List<int> cageValues = new List<int>();

@@ -15,6 +15,18 @@ public class KillerSudokuData
 
     public int[,] GetGrid { get; }
 
+    public List<CageData> GetSingleCagePositions()
+    {
+        List<CageData> singlePositionCages = new List<CageData>();
+        foreach (CageData cage in GetCages)
+        {
+            if (cage.GetPositions().Count == 1)
+            {
+                singlePositionCages.Add(cage);
+            }
+        }
+        return singlePositionCages;
+    }
     public string ToStringGrid()
     {
         var sb = new StringBuilder();

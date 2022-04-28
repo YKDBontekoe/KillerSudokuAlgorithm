@@ -9,7 +9,6 @@
 
     <ItemGroup>
       <Folder Include="Log" />
-      <Folder Include="Misc" />
     </ItemGroup>
 
 </Project>
