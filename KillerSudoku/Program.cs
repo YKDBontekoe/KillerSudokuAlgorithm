@@ -1,6 +1,6 @@
 ﻿using KillerSudoku;
 using KillerSudoku.Sudoku;
-using KillerSudoku.Sudoku.Strategies;
+using KillerSudoku.Sudoku.Heuristics;
 
 var grid = GridGenerator.GenerateBasicSudokuGrid();
 
@@ -19,7 +19,8 @@ basicWatch.Stop();
 Console.WriteLine("Time taken: {0}ms", basicWatch.ElapsedMilliseconds);
 
 // -------------------- KILLER SUDOKU --------------------
-var killerSudoku = GridGenerator.GenerateHardKillerSudoGrid();
+// -------------------- BACKTRACKING --------------------
+var killerSudoku = GridGenerator.GenerateEasyKillerSudokuGrid();
 KillerSudokuSolver.KillerSudoku = killerSudoku;
 
 var killerWatch = System.Diagnostics.Stopwatch.StartNew();
@@ -35,3 +36,21 @@ else
 
 killerWatch.Stop();
 Console.WriteLine("Time taken: {0}ms", killerWatch.ElapsedMilliseconds);
+
+// -------------------- BRUTE-FORCE --------------------
+var bruteKillerSudoku = GridGenerator.GenerateEasyKillerSudokuGrid();
+KillerSudokuSolver.KillerSudoku = bruteKillerSudoku;
+
+var killerWatchBruteForce = System.Diagnostics.Stopwatch.StartNew();
+if (KillerSudokuSolver.SolveKillerSudokuBruteForce())
+{
+    Console.WriteLine("Killer Sudoku Brute Force Solution: ");
+    Printer.Print(bruteKillerSudoku.GetGrid);
+}
+else
+{
+    Console.WriteLine("No solution found");
+}
+
+killerWatchBruteForce.Stop();
+Console.WriteLine("Time taken: {0}ms", killerWatchBruteForce.ElapsedMilliseconds);

@@ -37,7 +37,33 @@ public static class KillerSudokuSolver
         return false;
     }
 
+    public static bool SolveKillerSudokuBruteForce()
+    {
+        bool isSolved = false;
+        while (!isSolved)
+        {
+            KillerSudoku.GetGrid[new Random().Next(0, 9),new Random().Next(0, 9)] = new Random().Next(1, 10);
 
+            bool isValid = true;
+            for (int y = KillerSudoku.GetGrid.GetLength(0) - 1; y >= 0; y--)
+            {
+                for (int x = KillerSudoku.GetGrid.GetLength(0) - 1; x >= 0; x--)
+                {
+                    if (!isValid) break;
+                    
+                    int val = KillerSudoku.GetGrid[y, x];
+                    if (IsKillerSudokuSafe(y, x, val) && IsCageSafe(y, x, val)) continue;
+                    isValid = false;
+                    break;
+                }
+
+                isSolved = isValid;
+            }
+        }
+
+        return true;
+    }
+    
     // Killer Sudoku Rules: 
     // 1. Each row may only contain a number once
     // 2. Each column may only contain a number once

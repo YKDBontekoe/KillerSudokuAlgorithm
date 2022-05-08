@@ -1,6 +1,6 @@
 using KillerSudoku.Models;
 
-namespace KillerSudoku.Sudoku.Strategies;
+namespace KillerSudoku.Sudoku.Heuristics;
 
 public class RuleOneKillerSudoku
 {
