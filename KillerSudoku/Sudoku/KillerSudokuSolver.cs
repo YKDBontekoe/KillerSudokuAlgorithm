@@ -6,9 +6,12 @@ namespace KillerSudoku.Sudoku;
 public static class KillerSudokuSolver
 {
     public static KillerSudokuData KillerSudoku = new(new List<CageData>(), new[,]{{0,0}});
-
+    public static int Iterations;
+        
     public static bool SolveKillerSudoku(int yPos, int xPos)
     {
+        Iterations++;
+        
         // Move to next row when the end of the current row is reached.
         if (xPos == KillerSudoku.GetGrid.GetLength(0))
         {
@@ -23,10 +26,10 @@ public static class KillerSudokuSolver
 
         // Iterate over the possible domain values (n = size of x dimension of grid (n*n)).
         for (int num = 1; num < KillerSudoku.GetGrid.GetLength(0) + 1; num++) {
-            
             // Check if the number is safe to place in the current position.
             if (IsKillerSudokuSafe(yPos, xPos, num) && IsCageSafe(yPos, xPos, num)){
                 KillerSudoku.GetGrid[yPos,xPos] = num;
+                
                 
                 // Check next position.
                 if (SolveKillerSudoku(yPos, xPos + 1)) return true;

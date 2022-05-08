@@ -11,15 +11,15 @@ public static class Printer
         for (int i = 0; i < grid.GetLength(0); i++)
         {
             for (int j = 0; j < grid.GetLength(1); j++) 
-                sb.Append(j != grid.GetLength(1) - 1 ? "|---" : "|---|");
+                sb.Append(j != grid.GetLength(1) - 1 ? "|-----" : "|-----|");
             
             sb.Append("\n");
             
             for (int j = 0; j < grid.GetLength(1); j++)
             {
                 if (j == 0)
-                    sb.Append("| ");
-                sb.Append(grid[i, j] + " | ");
+                    sb.Append("|  ");
+                sb.Append(grid[i, j] + "  |  ");
             }
 
             if (grid.GetLength(0) - 1 == i)
@@ -27,7 +27,7 @@ public static class Printer
                 sb.Append("\n");
                 
                 for (int j = 0; j < grid.GetLength(1); j++)
-                    sb.Append(j != grid.GetLength(1) - 1 ? "|---" : "|---|");
+                    sb.Append(j != grid.GetLength(1) - 1 ? "|-----" : "|-----|");
                 
             }
 

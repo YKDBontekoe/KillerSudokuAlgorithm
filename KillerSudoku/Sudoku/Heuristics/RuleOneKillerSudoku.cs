@@ -6,6 +6,8 @@ public class RuleOneKillerSudoku
 {
     public static bool SolveKillerSudoku(int yPos, int xPos, List<CageData> singlePositionCages)
     {
+        KillerSudokuSolver.Iterations++;
+        
         if (singlePositionCages.Count == 0)
         {
             // Move to next row when the end of the current row is reached.
@@ -26,6 +28,7 @@ public class RuleOneKillerSudoku
             {
                 var position = cage.GetPositions().FirstOrDefault();
                 KillerSudokuSolver.KillerSudoku.GetGrid[(int)position.Y, (int)position.X] = cage.GetSum();
+                KillerSudokuSolver.Iterations++;
             }
             
             return SolveKillerSudoku(yPos, xPos, new List<CageData>());
@@ -39,9 +42,10 @@ public class RuleOneKillerSudoku
                     KillerSudokuSolver.IsCageSafe(yPos, xPos, num))
                 {
                     KillerSudokuSolver.KillerSudoku.GetGrid[yPos, xPos] = num;
-
+                    
                     // Check next position.
-                    if (SolveKillerSudoku(yPos, xPos + 1, singlePositionCages)) return true;
+                    if (SolveKillerSudoku(yPos, xPos + 1, singlePositionCages)) 
+                        return true;
                 }
 
                 KillerSudokuSolver.KillerSudoku.GetGrid[yPos, xPos] = 0;
