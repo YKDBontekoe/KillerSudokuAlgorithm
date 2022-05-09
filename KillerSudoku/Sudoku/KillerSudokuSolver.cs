@@ -10,8 +10,6 @@ public static class KillerSudokuSolver
         
     public static bool SolveKillerSudoku(int yPos, int xPos)
     {
-        Iterations++;
-        
         // Move to next row when the end of the current row is reached.
         if (xPos == KillerSudoku.GetGrid.GetLength(0))
         {
@@ -24,6 +22,9 @@ public static class KillerSudokuSolver
         // Check if current value is not 0. If so, move to next position.
         if (KillerSudoku.GetGrid[yPos, xPos] != 0) return SolveKillerSudoku(yPos, xPos + 1);
 
+        // Increment the number of iterations.
+        Iterations++;
+        
         // Iterate over the possible domain values (n = size of x dimension of grid (n*n)).
         for (int num = 1; num < KillerSudoku.GetGrid.GetLength(0) + 1; num++) {
             // Check if the number is safe to place in the current position.

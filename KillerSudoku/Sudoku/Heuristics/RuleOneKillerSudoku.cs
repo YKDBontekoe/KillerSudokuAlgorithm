@@ -6,8 +6,6 @@ public class RuleOneKillerSudoku
 {
     public static bool SolveKillerSudoku(int yPos, int xPos, List<CageData> singlePositionCages)
     {
-        KillerSudokuSolver.Iterations++;
-        
         if (singlePositionCages.Count == 0)
         {
             // Move to next row when the end of the current row is reached.
@@ -28,12 +26,14 @@ public class RuleOneKillerSudoku
             {
                 var position = cage.GetPositions().FirstOrDefault();
                 KillerSudokuSolver.KillerSudoku.GetGrid[(int)position.Y, (int)position.X] = cage.GetSum();
-                KillerSudokuSolver.Iterations++;
             }
             
             return SolveKillerSudoku(yPos, xPos, new List<CageData>());
         }
 
+        // Increment iterations counter.
+        KillerSudokuSolver.Iterations++;
+        
         // Iterate over the possible domain values (n = size of x dimension of grid (n*n)).
             for (int num = 1; num < KillerSudokuSolver.KillerSudoku.GetGrid.GetLength(0) + 1; num++)
             {

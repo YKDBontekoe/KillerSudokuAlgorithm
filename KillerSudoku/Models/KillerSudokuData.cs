@@ -27,6 +27,7 @@ public class KillerSudokuData
         }
         return singlePositionCages;
     }
+
     public string ToStringGrid()
     {
         var sb = new StringBuilder();

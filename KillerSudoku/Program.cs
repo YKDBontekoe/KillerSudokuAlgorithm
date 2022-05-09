@@ -61,6 +61,26 @@ killerRuleOneWatch.Stop();
 Console.WriteLine("Time taken: {0}ms", killerRuleOneWatch.ElapsedMilliseconds);
 Console.WriteLine("Iterations taken: " +  KillerSudokuSolver.Iterations);
 
+// -------------------- RULE REMAINING --------------------
+var killerRulerRemainingSudoku = GridGenerator.GenerateEasyKillerSudokuGrid();
+KillerSudokuSolver.KillerSudoku = killerRulerRemainingSudoku;
+KillerSudokuSolver.Iterations = 0;
+
+var killerRuleRemainingWatch = System.Diagnostics.Stopwatch.StartNew();
+if (RuleRemainingKillerSudoku.SolveKillerSudoku( 0, 0))
+{
+    Console.WriteLine("Killer Sudoku Solution with remaining rule: ");
+    Printer.Print(killerRulerRemainingSudoku.GetGrid);
+}
+else
+{
+    Console.WriteLine("No solution found");
+}
+
+killerRuleRemainingWatch.Stop();
+Console.WriteLine("Time taken: {0}ms", killerRuleRemainingWatch.ElapsedMilliseconds);
+Console.WriteLine("Iterations taken: " +  KillerSudokuSolver.Iterations);
+
 // -------------------- BRUTE-FORCE --------------------
 // var bruteKillerSudoku = GridGenerator.GenerateEasyKillerSudokuGrid();
 // KillerSudokuSolver.KillerSudoku = bruteKillerSudoku;
