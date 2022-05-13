@@ -13,12 +13,12 @@ public static class HelperFunctions
         int num, KillerSudokuData sudokuData)
     {
         // Check if the same num is the same row
-        for (int x = 0; x <= sudokuData.GetGrid.GetLength(0) - 1; x++)
-            if (sudokuData.GetGrid[yPos, x] == num) return false;
+        for (int x = 0; x <= sudokuData.Grid.GetLength(0) - 1; x++)
+            if (sudokuData.Grid[yPos, x] == num) return false;
 
         // Check if the same number is in the same column
-        for (int y = 0; y <= sudokuData.GetGrid.GetLength(1) - 1; y++)
-            if (sudokuData.GetGrid[y, xPos] == num) return false;
+        for (int y = 0; y <= sudokuData.Grid.GetLength(1) - 1; y++)
+            if (sudokuData.Grid[y, xPos] == num) return false;
 
         // Get the size of a single sub-matrix of the sudoku grid.
         int matrixSize = 3;
@@ -29,7 +29,7 @@ public static class HelperFunctions
         
         for (int i = 0; i < matrixSize; i++)
         for (int j = 0; j < matrixSize; j++)
-            if (sudokuData.GetGrid[i + startRow, j + startCol] == num) return false;
+            if (sudokuData.Grid[i + startRow, j + startCol] == num) return false;
 
         return true;
     }
@@ -47,7 +47,7 @@ public static class HelperFunctions
             foreach (Vector2 position in cage.GetPositions())
             {
                 if ((int)position.X == xPos && (int)position.Y == yPos) cageValues.Add(num);
-                else cageValues.Add(sudokuData.GetGrid[(int)position.Y, (int)position.X]);
+                else cageValues.Add(sudokuData.Grid[(int)position.Y, (int)position.X]);
             }
             
             int currentSum  = cageValues.Sum();

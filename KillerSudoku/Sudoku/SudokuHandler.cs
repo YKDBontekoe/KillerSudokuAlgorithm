@@ -43,7 +43,7 @@ public static class SudokuHandler
             case 3:
                 SolveKillerSudokuWithBacktrackingAndRuleRemaining.KillerSudoku = killerSudokuData;
                 isSuccess = SolveKillerSudokuWithBacktrackingAndRuleRemaining.SolveKillerSudoku(0, 0);
-                iterations = SolveKillerSudokuWithBacktrackingAndRuleOne.Iterations;
+                iterations = SolveKillerSudokuWithBacktrackingAndRuleRemaining.Iterations;
                 break;
             
             case 4:
@@ -64,7 +64,7 @@ public static class SudokuHandler
         if (isSuccess)
         {
             Console.WriteLine("Solution: ");
-            Printer.Print(killerSudokuData.GetGrid);
+            Printer.Print(killerSudokuData.Grid);
         }
         else
         {
