@@ -14,8 +14,8 @@ while (true)
 
     Console.WriteLine("Choose Solution Approach: ");
     Console.WriteLine("1. Basic");
-    Console.WriteLine("2. Rule One");
-    Console.WriteLine("3. Rule Remaining");
+    Console.WriteLine("2. Heuristic: Rule One");
+    Console.WriteLine("3. Forward Checking");
     Console.WriteLine("4. Brute Force");
     
     Console.Write("Solution: ");

@@ -41,9 +41,9 @@ public static class SudokuHandler
                 break;
             
             case 3:
-                SolveKillerSudokuWithBacktrackingAndRuleRemaining.KillerSudoku = killerSudokuData;
-                isSuccess = SolveKillerSudokuWithBacktrackingAndRuleRemaining.SolveKillerSudoku(0, 0);
-                iterations = SolveKillerSudokuWithBacktrackingAndRuleRemaining.Iterations;
+                SolveKillerSudokuWithBacktrackingAndForwardChecking.KillerSudoku = killerSudokuData;
+                isSuccess = SolveKillerSudokuWithBacktrackingAndForwardChecking.SolveKillerSudoku(0, 0);
+                iterations = SolveKillerSudokuWithBacktrackingAndForwardChecking.Iterations;
                 break;
             
             case 4:
