@@ -42,7 +42,7 @@ public static class SolveKillerSudokuWithBruteForce
             var maxPositions = KillerSudoku.Grid.GetLength(0) * KillerSudoku.Grid.GetLength(1);
             while (numbers.Count <=  maxPositions)
             {
-                numbers.Add(new Random(seed).Next(1, 10));
+                numbers.Add(new Random(numbers.Count == 0 ? seed  : seed % numbers.Count).Next(1, 10));
             }
             
             bool isValid = true;
