@@ -7,21 +7,13 @@ public static class SudokuHandler
 {
     public static void Execute(int difficulty, int solution)
     {
-        KillerSudokuData killerSudokuData;
-        switch (difficulty)
+        KillerSudokuData killerSudokuData = difficulty switch
         {
-            case 1:
-                killerSudokuData = GridGenerator.GenerateEasyKillerSudokuGrid();
-                break;
-            case 2:
-                killerSudokuData = GridGenerator.GenerateMediumKillerSudokuGrid();
-                break;
-            case 3:
-                killerSudokuData = GridGenerator.GenerateHardKillerSudoGrid();
-                break;
-            default: killerSudokuData = GridGenerator.GenerateEasyKillerSudokuGrid();
-                break;
-        }
+            1 => GridGenerator.GenerateEasyKillerSudokuGrid(),
+            2 => GridGenerator.GenerateMediumKillerSudokuGrid(),
+            3 => GridGenerator.GenerateHardKillerSudoGrid(),
+            _ => GridGenerator.GenerateEasyKillerSudokuGrid()
+        };
 
         bool isSuccess;
         int iterations;
